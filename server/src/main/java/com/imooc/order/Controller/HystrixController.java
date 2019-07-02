@@ -21,12 +21,13 @@ import java.util.Arrays;
 @DefaultProperties(defaultFallback = "defaultFallback")
 public class HystrixController {
 
-    @HystrixCommand(commandProperties = {
-            @HystrixProperty(name = "circuitBreaker.enabled",value = "true"),                   //设置熔断
-            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),
-            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value = "10000"),
-            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value = "60"),
-    })
+//    @HystrixCommand(commandProperties = {
+//            @HystrixProperty(name = "circuitBreaker.enabled",value = "true"),                   //设置熔断
+//            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),
+//            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value = "10000"),
+//            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value = "60"),
+//    })
+    @HystrixCommand
     @GetMapping("/getProductInfoList")
     public String getProductInfoList(@RequestParam("number")Integer number){
         RestTemplate restTemplate = new RestTemplate();
