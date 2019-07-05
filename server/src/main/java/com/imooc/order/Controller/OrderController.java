@@ -33,7 +33,6 @@ public class OrderController {
     private OrderService orderService;
     @PostMapping("/create")
     public ResultVO<Map<String,String>> create(@Valid OrderForm orderForm, BindingResult bindingResult){
-        log.info("进入了");
         if(bindingResult.hasErrors()){
             log.error("创建订单参数不正确 ={}",orderForm);
             throw new OrderException(1,bindingResult.getFieldError().getDefaultMessage());

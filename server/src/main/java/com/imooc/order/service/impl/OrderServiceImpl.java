@@ -41,17 +41,14 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public OrderDTO create(OrderDTO orderDTO) {
-        log.info("进入了函数");
         String orderId = KeyUtil.getUniqueKey();
         //查询商品信息(调用商品服务)
         List<String> productIdList = orderDTO.getOrderDetailList().stream()
                 .map(OrderDetail::getProductId)
                 .collect(Collectors.toList());
-        log.info("查询商品信息(调用商品服务)");
-        log.info("商品id长度为{}",productIdList.size());
         log.info("值为:{}",productIdList.toString());
         List<ProductInfoOutput> productInfoList = productClient.listForOrder(productIdList);
-        log.info("查询商品信息完毕,商品为{},开始向下执行{}",productInfoList);
+        log.info("查询商品信息完毕,商品为{},开始向下执行",productInfoList);
         //计算总价
         BigDecimal orderAmout = new BigDecimal(BigInteger.ZERO);
         for (OrderDetail orderDetail: orderDTO.getOrderDetailList()) {
